@@ -1,0 +1,8 @@
+[
+  { "ParameterKey": "ProjectPrefix", "ParameterValue": "dsn5c-lab13-acampos" },
+  { "ParameterKey": "AdminCidr", "ParameterValue": "203.0.113.10/32" },
+  { "ParameterKey": "KeyName", "ParameterValue": "REEMPLAZAR-PAR-DE-CLAVES" },
+  { "ParameterKey": "DeployEc2", "ParameterValue": "false" },
+  { "ParameterKey": "DeployAurora", "ParameterValue": "false" },
+  { "ParameterKey": "CreateAuroraReader", "ParameterValue": "true" }
+]

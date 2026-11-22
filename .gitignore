@@ -1,0 +1,7 @@
+node_modules/
+.env
+data/employees.json
+storage/uploads/
+npm-debug.log*
+.DS_Store
+coverage/
