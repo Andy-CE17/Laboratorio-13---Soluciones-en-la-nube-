@@ -9,6 +9,7 @@ const backdrop = $('#dialog-backdrop');
 const confirmDialog = $('#confirm-dialog');
 const photoInput = $('#photo');
 const photoPreview = $('#photo-preview');
+const navigationLinks = $$('.sidebar nav a');
 
 const icons = {
   mail: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
@@ -196,5 +197,49 @@ $('#confirm-delete').addEventListener('click', deleteEmployee);
 ['#department-filter','#status-filter'].forEach((selector) => $(selector).addEventListener('change', loadEmployees));
 let searchTimer;
 $('#search').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(loadEmployees, 220); });
+
+function activateNavigation(link) {
+  navigationLinks.forEach((item) => {
+    const selected = item === link;
+    item.classList.toggle('active', selected);
+    if (selected) item.setAttribute('aria-current', 'page');
+    else item.removeAttribute('aria-current');
+  });
+}
+
+navigationLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const sectionId = link.getAttribute('href').slice(1);
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    activateNavigation(link);
+    section.scrollIntoView({ behavior: 'smooth', block: sectionId === 'inicio' ? 'start' : 'center' });
+    const highlight = sectionId === 'inicio' ? $('.welcome-row') : section;
+    highlight.classList.remove('section-focus');
+    requestAnimationFrame(() => highlight.classList.add('section-focus'));
+    setTimeout(() => highlight.classList.remove('section-focus'), 950);
+    history.replaceState(null, '', `#${sectionId}`);
+  });
+});
+
+const initialNavigation = navigationLinks.find((link) => link.getAttribute('href') === location.hash) || navigationLinks[0];
+activateNavigation(initialNavigation);
+
+$('#view-toggle').addEventListener('click', () => {
+  const listView = list.classList.toggle('list-view');
+  $('#view-toggle').classList.toggle('active', listView);
+  $('#view-toggle').setAttribute('aria-pressed', String(listView));
+});
+
+$('.global-search input').addEventListener('input', (event) => {
+  $('#search').value = event.target.value;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    loadEmployees();
+    $('#directorio').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    activateNavigation(navigationLinks.find((link) => link.getAttribute('href') === '#directorio'));
+  }, 220);
+});
 
 initialize();
