@@ -16,6 +16,8 @@ const icons = {
   pin: '<svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
   building: '<svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1"/></svg>',
   trash: '<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg>',
+  eye: '<svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
+  edit: '<svg viewBox="0 0 24 24"><path d="m4 16-1 5 5-1L19 9l-4-4L4 16ZM13 7l4 4"/></svg>',
 };
 
 function escapeHtml(value = '') {
@@ -61,26 +63,20 @@ function renderDepartmentFilter() {
   select.value = selected;
 }
 
-function employeeCard(employee) {
+function employeeCard(employee, index) {
   const photo = employee.photoUrl
     ? `<img src="${escapeHtml(employee.photoUrl)}" alt="Fotografía de ${escapeHtml(employee.firstName)} ${escapeHtml(employee.lastName)}">`
     : initials(employee);
-  return `<article class="employee-card" data-id="${escapeHtml(employee.employeeId)}">
-    <div class="card-top">
-      <div class="avatar">${photo}</div>
-      <div class="employee-name"><h3>${escapeHtml(employee.firstName)} ${escapeHtml(employee.lastName)}</h3><p>${escapeHtml(employee.role)}</p></div>
-      <span class="status ${escapeHtml(employee.status.toLowerCase())}">${escapeHtml(employee.status)}</span>
-    </div>
-    <div class="employee-details">
-      <div class="detail-row">${icons.mail}<span>${escapeHtml(employee.email)}</span></div>
-      <div class="detail-row">${icons.building}<span>${escapeHtml(employee.department)}</span></div>
-      <div class="detail-row">${icons.pin}<span>${escapeHtml(employee.location || 'Sin ubicación')}</span></div>
-    </div>
-    <div class="card-actions">
-      <button type="button" data-action="edit">Editar perfil</button>
-      <button class="delete-card" type="button" data-action="delete" aria-label="Eliminar empleado">${icons.trash}</button>
-    </div>
-  </article>`;
+  return `<tr class="employee-card" data-id="${escapeHtml(employee.employeeId)}">
+    <td>${index + 1}</td>
+    <td><div class="table-avatar">${photo}</div></td>
+    <td><div class="employee-cell"><b>${escapeHtml(employee.firstName)} ${escapeHtml(employee.lastName)}</b><small>${escapeHtml(employee.email)}</small></div></td>
+    <td>${escapeHtml(employee.department)}</td>
+    <td>${escapeHtml(employee.role)}</td>
+    <td>${escapeHtml(employee.location || 'Sin ubicación')}</td>
+    <td><span class="status ${escapeHtml(employee.status.toLowerCase())}">${escapeHtml(employee.status)}</span></td>
+    <td><div class="row-actions"><button class="action-view" type="button" data-action="view" aria-label="Ver empleado">${icons.eye}</button><button class="action-edit" type="button" data-action="edit" aria-label="Editar empleado">${icons.edit}</button><button class="action-delete" type="button" data-action="delete" aria-label="Eliminar empleado">${icons.trash}</button></div></td>
+  </tr>`;
 }
 
 function renderList(items) {
@@ -169,7 +165,7 @@ async function initialize() {
   try {
     const health = await request('/api/health');
     state.mode = health.mode;
-    $('#cloud-state').innerHTML = `<span></span><div><strong>${health.mode === 'aws' ? 'AWS conectado' : 'Entorno local'}</strong><small>${health.mode === 'aws' ? `DynamoDB · ${health.region}` : 'Preparado para AWS'}</small></div>`;
+    $('#cloud-state').innerHTML = `<i></i><b>${health.mode === 'aws' ? `AWS conectado · ${health.region}` : 'Entorno local'}</b>`;
   } catch {}
   await loadEmployees();
 }
@@ -189,6 +185,7 @@ list.addEventListener('click', (event) => {
   if (!button) return;
   const employeeId = button.closest('.employee-card').dataset.id;
   const employee = state.employees.find((item) => item.employeeId === employeeId);
+  if (button.dataset.action === 'view') openDialog(employee);
   if (button.dataset.action === 'edit') openDialog(employee);
   if (button.dataset.action === 'delete') askDelete(employeeId);
 });
@@ -240,6 +237,10 @@ $('.global-search input').addEventListener('input', (event) => {
     $('#directorio').scrollIntoView({ behavior: 'smooth', block: 'center' });
     activateNavigation(navigationLinks.find((link) => link.getAttribute('href') === '#directorio'));
   }, 220);
+});
+
+$('.menu-button').addEventListener('click', () => {
+  document.body.classList.toggle('sidebar-collapsed');
 });
 
 initialize();
