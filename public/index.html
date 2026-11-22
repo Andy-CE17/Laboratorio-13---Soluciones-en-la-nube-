@@ -8,121 +8,97 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio" aria-label="Atlas People, inicio">
+        <span class="brand-mark"><svg viewBox="0 0 44 44"><path d="M22 5 35 12.5v15L22 35 9 27.5v-15L22 5Z"/><path d="m15.5 26 6.5-12 6.5 12M18.2 21.5h7.6"/></svg></span>
+        <span><strong>Atlas</strong><b>People</b><small>Cloud directory</small></span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a class="active" href="#inicio"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9H3zM9 20v-6h6v6"/></svg><span>Panel general</span></a>
+        <a href="#directorio"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87"/></svg><span>Empleados</span></a>
+        <a href="#departamentos"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1"/></svg><span>Departamentos</span></a>
+        <a href="#arquitectura"><svg viewBox="0 0 24 24"><path d="M4 6c0-2 16-2 16 0s-16 2-16 0Zm0 0v6c0 2 16 2 16 0V6M4 12v6c0 2 16 2 16 0v-6"/></svg><span>Arquitectura AWS</span></a>
+      </nav>
+      <div class="sidebar-cloud"><span><svg viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4-1.5A4.8 4.8 0 0 0 7 18Z"/></svg></span><div><strong>Nube preparada</strong><small>DynamoDB + S3</small></div></div>
+      <div class="sidebar-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="profile-mini"><span>AC</span><div><strong>Andy Campos</strong><small>Administrador</small></div><i></i></div>
+    </aside>
 
-  <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Atlas People, inicio">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 44 44"><path d="M22 5 35 12.5v15L22 35 9 27.5v-15L22 5Z"/><path d="m15.5 26 6.5-12 6.5 12M18.2 21.5h7.6"/></svg>
-      </span>
-      <span><strong>Atlas</strong><b>People</b><small>Cloud employee directory</small></span>
-    </a>
-    <nav aria-label="Navegación principal">
-      <a class="active" href="#inicio">Resumen</a>
-      <a href="#directorio">Directorio</a>
-      <a href="#arquitectura">Arquitectura</a>
-    </nav>
-    <div class="cloud-state" id="cloud-state">
-      <span></span><div><strong>Entorno local</strong><small>Preparado para AWS</small></div>
-    </div>
-  </header>
+    <main class="workspace" id="inicio">
+      <header class="topbar">
+        <div><p>Bienvenido a <strong>Atlas People</strong></p><small>Gestiona tu equipo desde un solo lugar.</small></div>
+        <label class="global-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" placeholder="Buscar en el panel" aria-label="Buscar en el panel"></label>
+        <div class="top-actions"><button type="button" aria-label="Notificaciones"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg><i></i></button><div class="cloud-state" id="cloud-state"><span></span><div><strong>Entorno local</strong><small>Preparado para AWS</small></div></div></div>
+      </header>
 
-  <main>
-    <section class="hero shell" id="inicio">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span>LABORATORIO 13 · AWS CLOUD</p>
-        <h1>Personas conectadas.<br><em>Información bajo control.</em></h1>
-        <p class="hero-lead">Un directorio operativo para administrar empleados, organizar equipos y proteger sus fotografías con servicios administrados de AWS.</p>
-        <div class="hero-actions">
-          <button class="primary-button" id="hero-add" type="button">Registrar empleado</button>
-          <a class="text-link" href="#directorio">Explorar directorio</a>
+      <section class="page-content">
+        <div class="welcome-row">
+          <div><p class="eyebrow">LABORATORIO 13 · AWS CLOUD</p><h1>Panel de talento</h1><p>Una vista clara de las personas, áreas y servicios que mantienen conectado al equipo.</p></div>
+          <button class="primary-button" id="hero-add" type="button"><span>+</span> Registrar empleado</button>
         </div>
-        <div class="service-tags" aria-label="Servicios utilizados">
-          <span><i class="ddb-icon"></i>DynamoDB</span>
-          <span><i class="s3-icon"></i>Amazon S3</span>
-          <span><i class="iam-icon"></i>IAM Role</span>
+        <section class="metrics" aria-label="Indicadores del directorio">
+          <article class="metric-pink"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87"/></svg></span><div><small>Total de empleados</small><strong id="metric-total">0</strong><p>Registros del directorio</p></div></article>
+          <article class="metric-purple"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><small>Disponibilidad</small><strong id="metric-active">0%</strong><p>Personal activo</p></div></article>
+          <article class="metric-yellow"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1"/></svg></span><div><small>Departamentos</small><strong id="metric-departments">0</strong><p>Áreas conectadas</p></div></article>
+          <article class="metric-green"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M8 11h8M8 15h5"/></svg></span><div><small>Actualización</small><strong id="metric-updated">Ahora</strong><p>Datos sincronizados</p></div></article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="panel directory" id="directorio">
+            <div class="panel-heading"><div><p class="eyebrow">EQUIPO</p><h2>Directorio de empleados</h2></div><button class="primary-button compact" id="add-employee" type="button">Nuevo empleado</button></div>
+            <div class="toolbar">
+              <label class="search-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Buscar nombre, cargo o ciudad" autocomplete="off"></label>
+              <label class="select-field"><span>Área</span><select id="department-filter"><option value="">Todas</option></select></label>
+              <label class="select-field"><span>Estado</span><select id="status-filter"><option value="">Todos</option><option>Activo</option><option>Vacaciones</option><option>Inactivo</option></select></label>
+              <button class="view-toggle" id="view-toggle" type="button" aria-label="Cambiar vista"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+            </div>
+            <div class="results-meta"><span id="results-count">0 empleados</span><span class="sync-label"><i></i>Sincronizado</span></div>
+            <div class="employee-grid" id="employee-list" aria-live="polite"></div>
+            <div class="empty-state" id="empty-state" hidden><span>AP</span><h3>No encontramos resultados</h3><p>Prueba con otro término o registra un nuevo empleado.</p></div>
+          </section>
+
+          <aside class="side-column" id="departamentos">
+            <section class="panel department-panel">
+              <div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN</p><h2>Equipo por área</h2></div><span class="period">Este mes</span></div>
+              <div class="department-bars">
+                <div><span><i class="dot-purple"></i>Tecnología</span><b>82%</b><em><i style="--value:82%"></i></em></div>
+                <div><span><i class="dot-pink"></i>Producto</span><b>68%</b><em><i style="--value:68%"></i></em></div>
+                <div><span><i class="dot-yellow"></i>Personas</span><b>56%</b><em><i style="--value:56%"></i></em></div>
+                <div><span><i class="dot-green"></i>Operaciones</span><b>42%</b><em><i style="--value:42%"></i></em></div>
+              </div>
+            </section>
+            <section class="panel cloud-panel" id="arquitectura">
+              <div class="panel-heading"><div><p class="eyebrow">SERVICIOS</p><h2>Arquitectura AWS</h2></div><span class="live-pill">Preparada</span></div>
+              <div class="service-stack">
+                <article><span class="aws-violet"><svg viewBox="0 0 24 24"><path d="M4 6c0-2 16-2 16 0s-16 2-16 0Zm0 0v6c0 2 16 2 16 0V6M4 12v6c0 2 16 2 16 0v-6"/></svg></span><div><b>DynamoDB</b><small>Datos de empleados</small></div><i>Activo</i></article>
+                <article><span class="aws-pink"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M7 14l3-3 3 3 2-2 3 4"/></svg></span><div><b>Amazon S3</b><small>Fotografías privadas</small></div><i>Seguro</i></article>
+                <article><span class="aws-yellow"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>IAM Role</b><small>Mínimo privilegio</small></div><i>Listo</i></article>
+              </div>
+              <div class="architecture-note"><span>Región</span><strong>us-east-1</strong><small>Infraestructura definida con CloudFormation</small></div>
+            </section>
+          </aside>
         </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="people-stack">
-          <div class="person-card person-one"><span>VR</span><b>Valeria Rojas</b><small>Producto</small></div>
-          <div class="person-card person-two"><span>MS</span><b>Mateo Salazar</b><small>Tecnología</small></div>
-          <div class="person-card person-three"><span>LC</span><b>Luciana Campos</b><small>Personas</small></div>
-        </div>
-        <div class="data-pulse"><span></span><span></span><span></span></div>
-        <div class="secure-note"><svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2M5 10h14v10H5z"/></svg><b>Fotografías privadas</b><small>Acceso temporal firmado</small></div>
-      </div>
-    </section>
-
-    <section class="metrics shell" aria-label="Indicadores del directorio">
-      <article><span class="metric-icon metric-blue"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><small>Total de empleados</small><strong id="metric-total">0</strong><p>Registros activos</p></div></article>
-      <article><span class="metric-icon metric-cyan"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><small>Disponibilidad</small><strong id="metric-active">0%</strong><p>Personal activo</p></div></article>
-      <article><span class="metric-icon metric-orange"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1"/></svg></span><div><small>Departamentos</small><strong id="metric-departments">0</strong><p>Áreas conectadas</p></div></article>
-      <article><span class="metric-icon metric-violet"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M8 11h8M8 15h5"/></svg></span><div><small>Actualización</small><strong id="metric-updated">Ahora</strong><p>Sincronización reciente</p></div></article>
-    </section>
-
-    <section class="directory shell" id="directorio">
-      <div class="section-heading">
-        <div><p class="eyebrow"><span></span>GESTIÓN DEL EQUIPO</p><h2>Directorio de empleados</h2><p>Busca perfiles, filtra áreas y mantén la información del equipo al día.</p></div>
-        <button class="primary-button" id="add-employee" type="button">Nuevo empleado</button>
-      </div>
-
-      <div class="toolbar">
-        <label class="search-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Buscar por nombre, cargo o ciudad" autocomplete="off"></label>
-        <label class="select-field"><span>Área</span><select id="department-filter"><option value="">Todas</option></select></label>
-        <label class="select-field"><span>Estado</span><select id="status-filter"><option value="">Todos</option><option>Activo</option><option>Vacaciones</option><option>Inactivo</option></select></label>
-        <button class="view-toggle" id="view-toggle" type="button" aria-label="Cambiar vista"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
-      </div>
-
-      <div class="results-meta"><span id="results-count">0 empleados</span><span class="sync-label"><i></i>Sincronizado</span></div>
-      <div class="employee-grid" id="employee-list" aria-live="polite"></div>
-      <div class="empty-state" id="empty-state" hidden><span>AP</span><h3>No encontramos resultados</h3><p>Prueba con otro término o registra un nuevo empleado.</p></div>
-    </section>
-
-    <section class="architecture shell" id="arquitectura">
-      <div class="section-heading architecture-heading">
-        <div><p class="eyebrow"><span></span>ARQUITECTURA SEGURA</p><h2>Datos diseñados para la nube</h2><p>La aplicación separa información, archivos y permisos para aplicar mínimo privilegio.</p></div>
-        <span class="region-badge">Región · us-east-1</span>
-      </div>
-      <div class="architecture-flow">
-        <article><span>01</span><div class="flow-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div><b>Aplicación web</b><small>Valida y procesa cada operación</small></article>
-        <i></i>
-        <article><span>02</span><div class="flow-icon"><svg viewBox="0 0 24 24"><path d="M4 6c0-2 16-2 16 0s-16 2-16 0Zm0 0v6c0 2 16 2 16 0V6M4 12v6c0 2 16 2 16 0v-6"/></svg></div><b>DynamoDB</b><small>Conserva los datos del empleado</small></article>
-        <i></i>
-        <article><span>03</span><div class="flow-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M7 14l3-3 3 3 2-2 3 4"/></svg></div><b>Amazon S3</b><small>Protege fotografías privadas</small></article>
-        <i></i>
-        <article><span>04</span><div class="flow-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><b>IAM Role</b><small>Autoriza sin claves en el código</small></article>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="shell"><span>Atlas People · Laboratorio 13</span><span>Desarrollo de Soluciones en la Nube</span></div></footer>
+      </section>
+    </main>
+  </div>
 
   <div class="dialog-backdrop" id="dialog-backdrop" hidden></div>
   <aside class="employee-dialog" id="employee-dialog" aria-hidden="true" aria-labelledby="dialog-title">
-    <header><div><p class="eyebrow"><span></span>PERFIL DEL EQUIPO</p><h2 id="dialog-title">Registrar empleado</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+    <header><div><p class="eyebrow">PERFIL DEL EQUIPO</p><h2 id="dialog-title">Registrar empleado</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
     <form id="employee-form">
       <input id="employee-id" type="hidden">
       <label class="photo-upload"><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp"><span id="photo-preview"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M8 14h8M12 10v8"/></svg></span><div><b>Fotografía del empleado</b><small>JPG, PNG o WebP · máximo 5 MB</small></div></label>
       <div class="form-grid">
-        <label><span>Nombres *</span><input name="firstName" required maxlength="60" placeholder="Andrea"></label>
-        <label><span>Apellidos *</span><input name="lastName" required maxlength="60" placeholder="Mendoza"></label>
-        <label class="wide"><span>Correo corporativo *</span><input name="email" type="email" required maxlength="120" placeholder="andrea.mendoza@empresa.pe"></label>
-        <label><span>Teléfono</span><input name="phone" maxlength="30" placeholder="+51 999 000 000"></label>
-        <label><span>Ciudad</span><input name="location" maxlength="60" placeholder="Lima"></label>
-        <label class="wide"><span>Cargo *</span><input name="role" required maxlength="100" placeholder="Especialista cloud"></label>
-        <label><span>Departamento *</span><select name="department" required><option value="">Seleccionar</option><option>Tecnología</option><option>Producto</option><option>Personas</option><option>Operaciones</option><option>Comercial</option><option>Finanzas</option></select></label>
-        <label><span>Estado</span><select name="status"><option>Activo</option><option>Vacaciones</option><option>Inactivo</option></select></label>
+        <label><span>Nombres *</span><input name="firstName" required maxlength="60" placeholder="Andrea"></label><label><span>Apellidos *</span><input name="lastName" required maxlength="60" placeholder="Mendoza"></label>
+        <label class="wide"><span>Correo corporativo *</span><input name="email" type="email" required maxlength="120" placeholder="andrea.mendoza@empresa.pe"></label><label><span>Teléfono</span><input name="phone" maxlength="30" placeholder="+51 999 000 000"></label><label><span>Ciudad</span><input name="location" maxlength="60" placeholder="Lima"></label>
+        <label class="wide"><span>Cargo *</span><input name="role" required maxlength="100" placeholder="Especialista cloud"></label><label><span>Departamento *</span><select name="department" required><option value="">Seleccionar</option><option>Tecnología</option><option>Producto</option><option>Personas</option><option>Operaciones</option><option>Comercial</option><option>Finanzas</option></select></label><label><span>Estado</span><select name="status"><option>Activo</option><option>Vacaciones</option><option>Inactivo</option></select></label>
       </div>
       <div class="form-actions"><button class="secondary-button" id="cancel-dialog" type="button">Cancelar</button><button class="primary-button" id="save-employee" type="submit">Guardar empleado</button></div>
     </form>
   </aside>
-
   <div class="confirm-dialog" id="confirm-dialog" hidden><div><span class="danger-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg></span><h3>Eliminar empleado</h3><p>Esta acción retirará el registro y su fotografía asociada.</p><div><button class="secondary-button" id="cancel-delete" type="button">Conservar</button><button class="danger-button" id="confirm-delete" type="button">Eliminar</button></div></div></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script type="module" src="/js/app.js"></script>
 </body>
 </html>
