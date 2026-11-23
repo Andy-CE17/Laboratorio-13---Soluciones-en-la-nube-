@@ -11,8 +11,9 @@ Parameters:
     Default: 127.0.0.1/32
     Description: IP publica autorizada para SSH. No usar 0.0.0.0/0.
   KeyName:
-    Type: AWS::EC2::KeyPair::KeyName
-    Description: Par de claves para la instancia de demostracion.
+    Type: String
+    Default: ''
+    Description: Par de claves opcional; solo se utiliza al activar EC2.
   DeployEc2:
     Type: String
     Default: 'false'
